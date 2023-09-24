@@ -1,0 +1,46 @@
+.container {
+  height: 907px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dbd7e4;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.box {
+  /* border: 2px solid black; */
+  margin: auto;
+  width: 60%;
+  height: 670px;
+  overflow: auto;
+  padding: 30px;
+}
+
+.book-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px 20px;
+}
+
+.book {
+  line-height: 0.5rem;
+}
+
+input, button {
+  border-color:darkgray;
+  border-radius: 10px;
+  height: 30px;
+  font-size: 18px;
+}
+
+.vl {
+  border: 3px solid black;
+  border-radius: 10px;
+  height: 730px;
+  width: 60px;
+  position: absolute;
+  left: 16%;
+}
