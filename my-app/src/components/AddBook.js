@@ -8,7 +8,7 @@ const AddBook = () => {
     const [searchTitle, setSearchTitle] = useState('');
     const [searchList, setSearchList] = useState('');
  
-    const handleResponse = async () => {
+    const handleResponse = () => {
         // axios format: https://axios-http.com/docs/res_schema
         // call Google API to get book based on what was searched
 
@@ -19,17 +19,13 @@ const AddBook = () => {
             const auth = res.data.items[0]["volumeInfo"]["authors"][0] || "";
             const img = res.data.items[0]["volumeInfo"]["imageLinks"]["thumbnail"];
 
-            console.log(title);
-            console.log(auth);
-            console.log(img);
-            return axios.put('http://localhost:8000/addbook', {
+            return axios.post('http://localhost:8000/addbook', {
                 title: title,
                 author: auth,
                 image: img
             });
         })
         .then((res) => {
-            console.log(res.insertedId);
             setSearchTitle('');
         })
 

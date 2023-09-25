@@ -27,6 +27,7 @@
 
 .book {
   line-height: 0.5rem;
+  word-wrap: break-word;
 }
 
 input, button {

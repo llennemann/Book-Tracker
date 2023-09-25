@@ -2,18 +2,10 @@ import express from "express";
 import { MongoClient } from "mongodb";
 import cors from 'cors';
 
-
-const app = new express();
+const app = express();
 
 // Middleware
-
-const allowedOrigins = ['http://localhost:8000']
-const options = {
-    origin: allowedOrigins
-}
-
-app.use(cors(options))
-
+app.use(cors());
 app.use(express.json());
 
 // get books in the database
@@ -23,12 +15,12 @@ app.get('/getlist', async (req, res) => {
 
     const db = client.db('book-db');
     const allBooks = await db.collection('books').find({}).toArray();
-    res.json(allBooks);
+    res.send(allBooks);
 })
 
 // add a book into the database
 // todo - beware of duplicates????
-app.put('/addbook', async (req, res) => {
+app.post('/addbook', async (req, res) => {
 
     console.log("IM HERE");
     const client = new MongoClient('mongodb://127.0.0.1:27017');
@@ -43,7 +35,6 @@ app.put('/addbook', async (req, res) => {
         author: author,
         image: image
     });
-    console.log(result.insertedId);
     res.sendStatus(200);
 })
 
