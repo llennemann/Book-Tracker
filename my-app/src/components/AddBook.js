@@ -4,15 +4,13 @@ import { useState } from "react";
 // https://www.youtube.com/watch?v=LGcgChoD_qY (reference)
 
 const AddBook = () => {
-    const [apiKey, setApiKey] = useState('AIzaSyDfo05wkVk82GcIYIWuJLTOwrgQT2GWMV4');
     const [searchTitle, setSearchTitle] = useState('');
     const [searchList, setSearchList] = useState('');
  
     const handleResponse = () => {
         // axios format: https://axios-http.com/docs/res_schema
-        // call Google API to get book based on what was searched
-
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTitle}&key=${apiKey}`)
+        // call Google API to get book based on what was searched        
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTitle}&key=${process.env.REACT_APP_API_KEY}`)
         .then((res) => {
             // get info from result of Google API call
             const title = res.data.items[0]["volumeInfo"]["title"];
