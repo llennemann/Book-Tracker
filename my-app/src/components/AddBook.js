@@ -9,15 +9,17 @@ const AddBook = () => {
  
     const handleResponse = () => {
         // axios format: https://axios-http.com/docs/res_schema
-        // call Google API to get book based on what was searched        
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTitle}&key=${process.env.REACT_APP_API_KEY}`)
+        // call Google API to get book based on what was searched  
+        axios.post('http://localhost:8000/gBook/searchgbooks', {
+            search: searchTitle
+        })  
         .then((res) => {
-            // get info from result of Google API call
+            // route returns the json result from Google API call
             const title = res.data.items[0]["volumeInfo"]["title"];
             const auth = res.data.items[0]["volumeInfo"]["authors"][0] || "";
             const img = res.data.items[0]["volumeInfo"]["imageLinks"]["thumbnail"];
 
-            return axios.post('http://localhost:8000/addbook', {
+            return axios.post('http://localhost:8000/book/addbook', {
                 title: title,
                 author: auth,
                 image: img

@@ -14,14 +14,10 @@ router.get('/getlist', async (req, res) => {
 // add a book into the database
 // todo - beware of duplicates????
 router.post('/addbook', async (req, res) => {
-    const client = new MongoClient('mongodb://127.0.0.1:27017');
-    await client.connect();
-
-    const db = client.db('book-db');
     console.log(req.body);
     const { title, author, image } = req.body;
     
-    const result = await db.collection('books').insertOne({
+    const result = await db.bookdb.collection('books').insertOne({
         title: title,
         author: author,
         image: image

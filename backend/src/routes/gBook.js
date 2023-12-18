@@ -1,11 +1,20 @@
 const express = require("express");
+const axios = require('axios');
+// const fetch = require("node-fetch");
 
-const app = express();
+require('dotenv').config()
+
+
 const router = express.Router();
 
-router.get('/api/searchgbooks', async (req, res) => {
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTitle}&key=${process.env.REACT_APP_API_KEY}`)
+router.post('/searchgbooks', async (req, res) => {
+    const { search } = req.body;
 
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_API_KEY}`;
+    axios.get(url)
+    .then((result) => {
+        res.send(result.data);
+    })
 })
 
 module.exports = router;
