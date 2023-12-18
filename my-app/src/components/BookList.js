@@ -7,7 +7,8 @@ const BookList = () => {
 
     useEffect(() => {
         const getBooks = () => {
-            axios.get('http://localhost:8000/getlist')
+            console.log('about to call book route')
+            axios.get('http://localhost:8000/book/getlist')
             .then((res) => {
                 setBookList(res.data);
             });
