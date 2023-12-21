@@ -36,19 +36,24 @@ const AddBook = () => {
         */
     }
     
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleResponse();
+        }
+    }
+    
     return (
-        <>
         <div className="add-book-form">
             <input 
                 value={ searchTitle }
                 onChange={e => setSearchTitle(e.target.value)}
+                onKeyDown={handleKeyPress}
                 type="search"
                 placeholder="Add a book"
                 size="50"
                 />
             <button onClick={ handleResponse }>Search Title</button>
         </div>
-        </>
     );
 }
 
