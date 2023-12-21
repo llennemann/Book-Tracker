@@ -15,6 +15,9 @@
   height: 670px;
   overflow: auto;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 
 .book-list {
@@ -22,12 +25,16 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 50px 20px;
+  gap: 50px 100px;
 }
 
 .book {
   line-height: 0.5rem;
   word-wrap: break-word;
+}
+
+.book-image {
+  max-height: 200px;
 }
 
 input, button {
@@ -37,11 +44,13 @@ input, button {
   font-size: 18px;
 }
 
+/* vertical bar on the left */
 .vl {
   border: 3px solid black;
   border-radius: 10px;
   height: 730px;
   width: 60px;
   position: absolute;
-  left: 16%;
+  left: 13%;
 }
+
