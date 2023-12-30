@@ -1,23 +1,24 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import AddBook from "../components/AddBook";
 
-const BookList = () => {
+const ToReadList = () => {
     const [bookList, setBookList] = useState([]);
 
     useEffect(() => {
         const getBooks = () => {
             axios.get('http://localhost:8000/book/getlist')
             .then((res) => {
-                console.log(res.data);
                 setBookList(res.data);
             });
         }
         
         getBooks();
-    }, []);
+    }, [bookList]);
 
     return ( 
         <>
+        <AddBook onBkAdded={newList => setBookList(newList)}/>
         <div className="book-list">
             {bookList.map(book => {
                 if (book.title === null || book.title.includes('Test')) {
@@ -36,4 +37,4 @@ const BookList = () => {
     );
 }
 
-export default BookList; 
+export default ToReadList; 

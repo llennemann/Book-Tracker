@@ -18,14 +18,13 @@ router.post('/addbook', async (req, res) => {
     
     const foundBk = await db.bookdb.collection('books').findOne( {title: title, author: author} );
 
-    console.log(foundBk);
-
     if (foundBk == null) {
         const result = await db.bookdb.collection('books').insertOne({
             title: title,
             author: author,
             image: image
         });
+
         res.sendStatus(200);
     }
     else {
